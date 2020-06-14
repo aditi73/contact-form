@@ -5,22 +5,12 @@
   </head>
   <body>
     <h1>Contact Information Details</h1>
-    <ul>
-      <li>
-        First Name: <%= @contact.first_name %><br/>
-      </li>
-      <li>
-        Last Name: <%= @contact.last_name %><br/>
-      </li>
-      <li>
-        Email: <%= @contact.email %><br/>
-      </li>  
-      <li>
-        Phone Number: <%= @contact.phone_number %><br/>
-      </li>  
-      <li>  
-        Message: <%= @contact.message %>
-      </li>
+    <ul style="letter-spacing: 0.1em;">
+      <% @contact_fields.each do |contact_field| %>
+        <li>
+          <b><%= contact_field.gsub('_', ' ').titleize %>:</b> <%= @contact[contact_field] %><br/>
+        </li>
+      <% end %>
     </ul>
   </body>
 </html>
