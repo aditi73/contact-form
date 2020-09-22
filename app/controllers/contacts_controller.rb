@@ -6,9 +6,9 @@ class ContactsController < ApplicationController
     if contact.save
       # Send email on successfull creation
       ContactMailer.contact_detail_email(contact).deliver_now
-      render json: {status: :success, contact: contact, message: "Created contact successfully"}
+      render json: {contact: contact, message: I18n.t("message.success", entity: "Contact")}, status: I18n.t('status.success')
     else
-      render json: {status: :success, contact: [], message: "Failed to create contact"}
+      render json: {message: contact.errors.messages}, status: I18n.t('status.unprocessable_entity')
     end
   end
 
